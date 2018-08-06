@@ -1,0 +1,25 @@
+{
+  "name": "template-go",
+  "version": "0.0.0",
+  "description": "golang template",
+  "repository": {
+    "url": "dwarvesf/template-go",
+    "type": "git"
+  },
+  "author": "dwarvesf <team@dwarvesf.com> (github.com/dwarvesf)",
+  "license": "MIT",
+  "files": [
+    "sao.js",
+    "template"
+  ],
+  "scripts": {
+    "test": "ava"
+  },
+  "dependencies": {
+    "superb": "^1.3.0"
+  },
+  "devDependencies": {
+    "ava": "^0.21.0",
+    "sao": "^0.22.1"
+  }
+}
