@@ -5,7 +5,7 @@ import (
 
 	"github.com/jinzhu/gorm"
 
-	"github.com/dwarvesf/template-go/template/service/add"
+	"<%= importPath %>/service/add"
 )
 
 type addStore struct {

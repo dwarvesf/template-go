@@ -10,12 +10,12 @@ import (
 
 	"github.com/go-kit/kit/log"
 
-	"github.com/dwarvesf/template-go/template/endpoints"
-	serviceHttp "github.com/dwarvesf/template-go/template/http"
-	"github.com/dwarvesf/template-go/template/middlewares"
-	"github.com/dwarvesf/template-go/template/postgres"
-	"github.com/dwarvesf/template-go/template/service"
-	"github.com/dwarvesf/template-go/template/service/add"
+	"<%= importPath %>/endpoints"
+	serviceHttp "<%= importPath %>/http"
+	"<%= importPath %>/middlewares"
+	"<%= importPath %>/postgres"
+	"<%= importPath %>/service"
+	"<%= importPath %>/service/add"
 )
 
 func main() {

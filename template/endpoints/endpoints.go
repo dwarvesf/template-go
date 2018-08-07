@@ -3,7 +3,7 @@ package endpoints
 import (
 	"github.com/go-kit/kit/endpoint"
 
-	"github.com/dwarvesf/template-go/template/service"
+	"<%= importPath %>/service"
 )
 
 type Endpoints struct {

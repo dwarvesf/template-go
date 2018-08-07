@@ -10,8 +10,8 @@ import (
 	"github.com/go-kit/kit/log"
 	httptransport "github.com/go-kit/kit/transport/http"
 
-	"github.com/dwarvesf/template-go/template/endpoints"
-	"github.com/dwarvesf/template-go/template/service"
+	"<%= importPath %>/endpoints"
+	"<%= importPath %>/service"
 )
 
 // NewHTTPHandler ...

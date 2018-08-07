@@ -5,8 +5,8 @@ import (
 
 	"github.com/go-kit/kit/endpoint"
 
-	"github.com/dwarvesf/template-go/template/service"
-	"github.com/dwarvesf/template-go/template/service/add"
+	"<%= importPath %>/service"
+	"<%= importPath %>/service/add"
 )
 
 type AddRequest struct {
