@@ -1,6 +1,6 @@
 # template-go
 
-> golang template
+> Template for scaffolding your next Go http server project, based on [gokit](https://github.com/go-kit/kit).
 
 ## Usage
 
