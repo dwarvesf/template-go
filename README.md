@@ -12,12 +12,6 @@ yarn global add sao
 npm i -g sao
 ```
 
-### From npm
-
-```bash
-sao go my-project
-```
-
 ### From git
 
 ```bash
