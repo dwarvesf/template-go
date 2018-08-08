@@ -5,7 +5,7 @@ import (
 
 	"github.com/jinzhu/gorm"
 
-	"<%= importPath %>/service/add"
+	"<%= domainDir + _.folderName %>/service/add"
 )
 
 type addStore struct {

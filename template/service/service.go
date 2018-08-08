@@ -1,6 +1,6 @@
 package service
 
-import "<%= importPath %>/service/add"
+import "<%= domainDir + _.folderName %>/service/add"
 
 // Service ...
 type Service struct {

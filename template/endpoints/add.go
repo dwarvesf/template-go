@@ -5,8 +5,8 @@ import (
 
 	"github.com/go-kit/kit/endpoint"
 
-	"<%= importPath %>/service"
-	"<%= importPath %>/service/add"
+	"<%= domainDir + _.folderName %>/service"
+	"<%= domainDir + _.folderName %>/service/add"
 )
 
 type AddRequest struct {

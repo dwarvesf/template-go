@@ -3,7 +3,7 @@ package endpoints
 import (
 	"github.com/go-kit/kit/endpoint"
 
-	"<%= importPath %>/service"
+	"<%= domainDir + _.folderName %>/service"
 )
 
 type Endpoints struct {

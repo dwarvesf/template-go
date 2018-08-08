@@ -4,11 +4,11 @@ const fs = require('fs')
 
 // https://sao.js.org/#/create?id=config-file
 module.exports = {
+  enforceNewFolder: true,
+  showTip: false,
+  gitInit: false,
+  installDependencies: false,
   prompts: {
-    name: {
-      message: 'What is the name of the new project?',
-      default: ':folderName:',
-    },
     domain: {
       message: 'What is your vsc domain?',
       default: 'github.com',
@@ -18,19 +18,15 @@ module.exports = {
       default: `my ${superb()} Go project`,
     },
   },
-  data({ domain, name }) {
+  data({ domain }) {
     return {
-      importPath: `${domain}/${name}`,
+      domainDir: domain + '/',
     }
   },
-  filters: {},
   move: {
     gitignore: '.gitignore',
   },
-  showTip: false,
-  gitInit: false,
-  installDependencies: false,
-  post({ answers, folderPath, log, chalk }, stream) {
+  post({ answers, folderName, folderPath, log, chalk }, stream) {
     // check for GOPATH env
     if (!process.env.GOPATH) {
       log.error(
@@ -42,8 +38,8 @@ module.exports = {
     }
     // check if same project src already exist
     const srcPath = `${process.env.GOPATH}/src/${answers.domain}`
-    const projectPath = `${srcPath}/${answers.name}`
-    if (fs.existsSync(`${srcPath}/${answers.name}`)) {
+    const projectPath = `${srcPath}/${folderName}`
+    if (fs.existsSync(projectPath)) {
       log.error(
         `${chalk.magenta(
           projectPath
@@ -54,7 +50,7 @@ module.exports = {
     // move src to srcPath, because of how GOPATH works. In future releases
     // where Go module is more stable we wouldn't have to do this.
     exec(
-      `mkdir -p ${srcPath} && mv -n ${folderPath} ${srcPath}/`,
+      `mkdir -p ${srcPath} && mv -n ${folderPath} ${srcPath}/${folderName}`,
       (err, stdout, stderr) => {
         if (err) {
           log.error(err.message)
@@ -68,7 +64,7 @@ module.exports = {
         log.success('Done, let the hacking begin!')
         log.info(
           `Type ${chalk.magenta(
-            'cd ' + srcPath + '/' + answers.name
+            'cd ' + srcPath + '/' + folderName
           )} to get started!`
         )
       }

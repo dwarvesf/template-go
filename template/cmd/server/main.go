@@ -10,12 +10,12 @@ import (
 
 	"github.com/go-kit/kit/log"
 
-	"<%= importPath %>/endpoints"
-	serviceHttp "<%= importPath %>/http"
-	"<%= importPath %>/middlewares"
-	"<%= importPath %>/postgres"
-	"<%= importPath %>/service"
-	"<%= importPath %>/service/add"
+	"<%= domainDir + _.folderName %>/endpoints"
+	serviceHttp "<%= domainDir + _.folderName %>/http"
+	"<%= domainDir + _.folderName %>/middlewares"
+	"<%= domainDir + _.folderName %>/postgres"
+	"<%= domainDir + _.folderName %>/service"
+	"<%= domainDir + _.folderName %>/service/add"
 )
 
 func main() {
