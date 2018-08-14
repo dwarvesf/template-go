@@ -43,7 +43,7 @@ func main() {
 	{
 		s = service.Service{
 			AddService: middlewares.Compose(
-				postgres.NewAddStore(pgdb),
+				add.NewPGStore(pgdb),
 				add.LoggingMiddleware(logger),
 				add.ValidationMiddleware(),
 			).(add.Service),
