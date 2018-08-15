@@ -1,23 +1,23 @@
 swagger: "2.0"
 info:
-  description: "This is a sample for add service"
+  description: "<%= description %>"
   version: "1.0.0"
-  title: "Sample"
+  title: "<%= _.folderName %> API Document"
 host: "localhost:3000"
 basePath: "/"
 tags:
-- name: "service"
-  description: "this is a service"
+- name: "add"
+  description: "add service"
 schemes:
 - "http"
 paths:
   /add:
     post:
       tags:
-      - "service"
+      - "add"
       summary: "Add 2 value"
       description: "add 2 value and return response"
-      operationId: "addPet"
+      operationId: "add"
       consumes:
       - "application/json"
       produces:
