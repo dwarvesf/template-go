@@ -9,6 +9,10 @@ module.exports = {
   gitInit: false,
   installDependencies: false,
   prompts: {
+    namespace: {
+      message: 'What is your vsc namespace?',
+      default: 'dwarvesf',
+    },
     domain: {
       message: 'What is your vsc domain?',
       default: 'github.com',
@@ -18,15 +22,24 @@ module.exports = {
       default: `my ${superb()} Go project`,
     },
   },
-  data({ domain }) {
+  data({ domain, namespace }) {
     return {
-      domainDir: domain + '/',
+      domainDir: `${domain}/${namespace}/`,
     }
   },
   move: {
     gitignore: '.gitignore',
   },
-  post({ answers, folderName, folderPath, log, chalk }, stream) {
+  post(
+    {
+      answers: { domain, namespace },
+      folderName,
+      folderPath,
+      log,
+      chalk,
+    },
+    stream
+  ) {
     // check for GOPATH env
     if (!process.env.GOPATH) {
       log.error(
@@ -37,7 +50,7 @@ module.exports = {
       process.exit(1)
     }
     // check if same project src already exist
-    const srcPath = `${process.env.GOPATH}/src/${answers.domain}`
+    const srcPath = `${process.env.GOPATH}/src/${domain + '/' + namespace}`
     const projectPath = `${srcPath}/${folderName}`
     if (fs.existsSync(projectPath)) {
       log.error(
