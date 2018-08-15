@@ -1,0 +1,55 @@
+swagger: "2.0"
+info:
+  description: "This is a sample for add service"
+  version: "1.0.0"
+  title: "Sample"
+host: "localhost:3000"
+basePath: "/"
+tags:
+- name: "service"
+  description: "this is a service"
+schemes:
+- "http"
+paths:
+  /add:
+    post:
+      tags:
+      - "service"
+      summary: "Add 2 value"
+      description: "add 2 value and return response"
+      operationId: "addPet"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "add 2 value and return response"
+        required: true
+        schema:
+          $ref: "#/definitions/add_post_req"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/add_post_res"
+
+definitions:
+  add_post_req:
+    type: "object"
+    properties:
+      add:
+        type: "object"
+        properties:
+          x:
+            type: "integer"
+            format: "int32"
+          y:
+            type: "integer"
+            format: "int32"
+  add_post_res:
+    properties:
+          result:
+            type: "integer"
+            format: "int32"
