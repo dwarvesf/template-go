@@ -10,8 +10,8 @@ import (
 	"github.com/go-kit/kit/log"
 	httptransport "github.com/go-kit/kit/transport/http"
 
-	"<%= domainDir + _.folderName %>/endpoints"
-	"<%= domainDir + _.folderName %>/service"
+	"<%= domainDir + _.folderName %>/src/endpoints"
+	"<%= domainDir + _.folderName %>/src/service"
 )
 
 // NewHTTPHandler ...

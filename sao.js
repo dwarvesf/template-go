@@ -9,13 +9,13 @@ module.exports = {
   gitInit: false,
   installDependencies: false,
   prompts: {
-    namespace: {
-      message: 'What is your vsc namespace?',
-      default: 'dwarvesf',
-    },
     domain: {
       message: 'What is your vsc domain?',
       default: 'github.com',
+    },
+    namespace: {
+      message: 'What is your vsc namespace?',
+      default: ':gitUser:',
     },
     description: {
       message: 'How would you describe the new project?',
