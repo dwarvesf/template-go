@@ -1,26 +1,24 @@
-package postgres
+package add
 
 import (
 	"context"
 
 	"github.com/jinzhu/gorm"
-
-	"<%= domainDir + _.folderName %>/service/add"
 )
 
-type addStore struct {
+type pgStore struct {
 	db *gorm.DB
 }
 
-// NewAddStore ...
-func NewAddStore(db *gorm.DB) *addStore {
-	return &addStore{
+// NewPGStore create new project store
+func NewPGStore(db *gorm.DB) Service {
+	return &pgStore{
 		db: db,
 	}
 }
 
 // Add just do a plus with 2 vars (X+Y) for the sake of demonstration, in reallity
 // you would want to execute a DB query/transaction here
-func (s *addStore) Add(ctx context.Context, arg *add.Add) (int, error) {
+func (s *pgStore) Add(ctx context.Context, arg *Add) (int, error) {
 	return arg.X + arg.Y, nil
 }
