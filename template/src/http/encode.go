@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	kithttp "github.com/go-kit/kit/transport/http"
+		kithttp "github.com/go-kit/kit/transport/http"
+
+	"<%= domainDir + _.folderName %>/cmd/errorer"
 )
 
 // encodeResponse is the common method to encode all response types to the client.
@@ -32,7 +34,7 @@ func encodeJSONError(_ context.Context, err error, w http.ResponseWriter) {
 	}
 	code := http.StatusInternalServerError
 	// and custom status code
-	if sc, ok := err.(kithttp.StatusCoder); ok {
+	if sc, ok := err.(errorer.Errorer); ok {
 		code = sc.StatusCode()
 	}
 	w.WriteHeader(code)
