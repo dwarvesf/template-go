@@ -1,0 +1,14 @@
+version: "3"
+services:
+  db_local:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: db_local
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    container_name: db_local
+    ports:
+      - 54321:5432
+    expose:
+      - 54321

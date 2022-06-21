@@ -1,3 +1,0 @@
-# <%= _.folderName %>
-
-> <%= description %>
