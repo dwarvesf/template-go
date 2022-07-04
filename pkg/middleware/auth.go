@@ -1,0 +1,78 @@
+package middleware
+
+import (
+	"net/http"
+	"strings"
+
+	"github.com/dwarvesf/go-template/pkg/config"
+	"github.com/dwarvesf/go-template/pkg/consts"
+	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt/v4"
+)
+
+func getTokenStringFromContext(c *gin.Context) string {
+	authorization := c.GetHeader("Authorization")
+	tokenStr := strings.Split(authorization, " ")
+
+	if authorization != "" && len(tokenStr) == 2 {
+		return tokenStr[1]
+	}
+
+	cookieStr, err := c.Cookie(consts.CookieKey)
+	if err != nil || cookieStr == "" {
+		return ""
+	}
+
+	return cookieStr
+
+}
+
+func AuthGuard(cfg config.Config) gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		tokenStr := getTokenStringFromContext(ctx)
+
+		if tokenStr == "" {
+			ctx.JSON(http.StatusUnauthorized, gin.H{
+				"error": "please login to continue",
+			})
+			ctx.Abort()
+			return
+		}
+
+		token, err := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
+			return cfg.JWTSecret, nil
+		})
+
+		if err != nil || !token.Valid {
+			ctx.JSON(http.StatusUnauthorized, gin.H{
+				"message": "invalid token or token expired",
+				"error":   err.Error(),
+			})
+			ctx.Abort()
+			return
+		}
+
+		ctx.Next()
+	}
+}
+
+func WithAuthContext(cfg config.Config) gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		tokenStr := getTokenStringFromContext(ctx)
+
+		var claims jwt.MapClaims
+		token, err := jwt.ParseWithClaims(tokenStr, &claims, func(token *jwt.Token) (interface{}, error) {
+			return cfg.JWTSecret, nil
+		})
+
+		if err != nil || !token.Valid {
+			ctx.Next()
+			return
+		}
+
+		ctx.Set("user_id", claims["user_id"])
+		ctx.Set("email", claims["email"])
+
+		ctx.Next()
+	}
+}
